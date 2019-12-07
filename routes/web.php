@@ -89,6 +89,8 @@ Route::post('university-list', 'AjaxController@university_list');
               /*upload ajax*/
 Route::post('content-type-content', 'AjaxUploadController@content_type_content');
 Route::post('content-section', 'AjaxUploadController@content_section');
+Route::post('institution-department-classes', 'AjaxUploadController@institution_depaerment_classes');
+Route::post('institution-classes-uploads', 'AjaxUploadController@institution_classes');
 Route::post('contents-class-subject', 'AjaxUploadController@class_subject');
 Route::post('institute-category-institute-subject', 'AjaxUploadController@institute_category_institute_subject');
 Route::post('job-exam-subject', 'AjaxUploadController@job_exam_subject');

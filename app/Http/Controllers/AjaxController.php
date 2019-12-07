@@ -371,13 +371,10 @@ class AjaxController extends Controller
         $material_type_id =  $request->material_type_id;
         $content_section_id =  $request->content_section_id;
         $contents = DB::table('contents')->where(['material_type_id'=> $material_type_id,'content_section_id'=>$content_section_id,'class_id'=>$class_id,'subject_id'=>$subject_id,'department_id'=>$department_id]);
-
         if($institution_id){
             $contents->where('institution_id',$institution_id);
         }
-
         $contents = $contents->get();
-
         echo view('ajax.material_type_contents',(['contents'=>$contents]));
     }
 

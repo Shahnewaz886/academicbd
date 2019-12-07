@@ -17,7 +17,7 @@
                                 <div class="col-xs-4 col-sm-4 col-md-4">
                                     <label class="firstname">First Name :</label></div>
                                 <div class="col-xs-8 col-sm-8 col-md-8">
-                                    <input type="text" name="name" required id="fname" placeholder="Enter t Name" class="form-control ">
+                                    <input type="text" name="name" required id="fname" placeholder="Enter Your Name" class="form-control ">
                                 </div>
                             </div>
                         </div>

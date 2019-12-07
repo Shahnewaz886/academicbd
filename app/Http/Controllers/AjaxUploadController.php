@@ -38,7 +38,7 @@ class AjaxUploadController extends Controller
 
             $classes = DB::table('classes')
                 ->join('institution_type_has_class','institution_type_has_class.class_id','classes.id')
-                ->where('institution_type_has_class.institution_type_id',1)
+                ->where('institution_type_has_class.institution_type_id',$content_section_id)
                 ->pluck('title', 'id');
 
             $institutions = DB::table('institution')
@@ -64,10 +64,9 @@ class AjaxUploadController extends Controller
                 ->pluck('title', 'id');
 
             $institutions_category = DB::table('institution_category')->orderBy('id', 'DESC')->pluck('title', 'id');
-            $department = DB::table('department')->orderBy('id', 'DESC')->pluck('title', 'id');
 
             $material_type = DB::table('material_type')->orderBy('id', 'DESC')->pluck('title', 'id');
-            echo view('ajax.uploads.graduate',(['classes'=>$classes,'institutions_category'=>$institutions_category,'department'=>$department,'material_type'=>$material_type]));
+            echo view('ajax.uploads.graduate',(['classes'=>$classes,'institutions_category'=>$institutions_category,'material_type'=>$material_type]));
 
         }elseif($content_section_id==10){
                                  /*skill development*/
@@ -109,6 +108,43 @@ class AjaxUploadController extends Controller
 
         echo view('ajax.uploads.subject',(['subject'=>$subjects]));
     }
+
+
+    /*after change Institution of Undergraduate & Postgraduate sections and add departments*/
+
+    public function institution_depaerment_classes(Request $request)
+    {
+        $institution_id = $request->institution_id;
+        $department = DB::table('department')
+            ->join('institution_has_department','institution_has_department.department_id','department.id')
+            ->where('institution_id',$institution_id)
+            ->orderBy('id', 'DESC')
+            ->pluck('title', 'id');
+
+        $classes = DB::table('classes')
+            ->join('institution_has_class','institution_has_class.class_id','classes.id')
+            ->where('institution_id',$institution_id)
+            ->orderBy('id', 'DESC')
+            ->pluck('title', 'id');
+
+        echo view('ajax.uploads.institution_department_classes',(['departments'=>$department,'classes'=>$classes]));
+    }
+
+    /*after change Institution of  and add classes*/
+
+    public function institution_classes(Request $request)
+    {
+        $institution_id = $request->institution_id;
+        $classes = DB::table('classes')
+            ->join('institution_has_class','institution_has_class.class_id','classes.id')
+            ->where('institution_id',$institution_id)
+            ->orderBy('id', 'DESC')
+            ->pluck('title', 'id');
+
+        echo view('ajax.uploads.institution_classes',(['classes'=>$classes]));
+    }
+
+
 
 
                 /*after change content type and add file or youtube or text*/

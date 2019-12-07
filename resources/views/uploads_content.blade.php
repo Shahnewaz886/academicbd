@@ -82,6 +82,45 @@
                 });
             })
 
+
+                /*after change Institution of Undergraduate & Postgraduate sections and add departments*/
+
+                $("body").on( "change", "[name='institution_id']", function() {
+                    var institution_id = $(this).val();
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: "POST",
+                        url: '/institution-department-classes',
+                        dataType: 'HTML',
+                        data: {institution_id: institution_id},
+                        success: function( data ) {
+                            $('.departments-classes').html(data);
+                        }
+                    });
+                })
+
+
+
+                /*after change Institution of  and add classes*/
+
+                $("body").on( "change", "[name='institution_id']", function() {
+                    var institution_id = $(this).val();
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: "POST",
+                        url: '/institution-classes-uploads',
+                        dataType: 'HTML',
+                        data: {institution_id: institution_id},
+                        success: function( data ) {
+                            $('.classes').html(data);
+                        }
+                    });
+                })
+
                         /*after chnage institution category of admision test and add institution and subject*/
 
             $("body").on( "change", "[name='institution_category_id']", function() {
