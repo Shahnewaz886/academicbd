@@ -5,12 +5,8 @@
         {!! Form::select('institution_id', $institutions, old('institution_id'),['class'=>'form-control','required'=>'required']) !!}
     </div>
 
-    <div class="departments-classes">
-
-    </div>
-
     <div class="form-group">
-        <label>Subject</label>
-        @php $subjects->prepend('Select Subject','') @endphp
+        <label>Subject/Course</label>
+        @php $subjects->prepend('Select Subject/Course','') @endphp
         {!! Form::select('subject_id', $subjects, old('subject_id'),['class'=>'form-control','required'=>'required']) !!}
     </div>

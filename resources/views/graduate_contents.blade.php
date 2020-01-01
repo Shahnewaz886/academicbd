@@ -207,6 +207,7 @@
 
             $("body").on( "click", ".class_title", function() {
                 var class_id = $(this).data('id');
+                var department_id = $("[name='department_id']").val();
 
                 $('.class_title').removeClass('selected');
                 $('.class_title').removeAttr('id');
@@ -226,7 +227,7 @@
                     type: "POST",
                     url: '/class-subject',
                     dataType: 'JSON',
-                    data: {class_id: class_id,institution_type_id:'{{ Request::segment(2)}}'},
+                    data: {class_id: class_id,department_id: department_id,institution_type_id:'{{ Request::segment(2)}}'},
                     success: function( data ) {
                         $('.class_subjects').html(data.subjects);
                     }

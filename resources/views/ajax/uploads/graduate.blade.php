@@ -8,6 +8,18 @@
 
 </div>
 
+<div class="form-group">
+    <label>Department</label>
+    @php $department->prepend('Select Department','') @endphp
+    {!! Form::select('department_id', $department, old('department_id'),['class'=>'form-control','required'=>'required']) !!}
+</div>
+
+<div class="form-group">
+    <label>Level-Term/Year</label>
+    @php $classes->prepend('Select Level-Term/Year','') @endphp
+    {!! Form::select('class_id', $classes, old('class_id'),['class'=>'form-control','required'=>'required']) !!}
+</div>
+
 
 <div class="form-group">
     <label>Material Type</label>
